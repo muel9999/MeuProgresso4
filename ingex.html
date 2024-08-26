@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Imagens</title>
+    <style>
+        .gallery {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            text-align: center;
+            flex-direction: column;
+            
+        }
+        .thumbnail {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .main-image {
+            max-width: 400px;
+            max-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Galeria de Imagens</h1>
+    <div class="gallery">
+        <img src="download.jpg" alt="" class="thumbnail" onclick="mostrarImagem('download.jpg')">
+       <img src="download(1).jpg" alt="" class="thumbnail" onclick="mostrarImagem('download(1).jpg')">
+        <img src="download(2).jpg" alt="" class="thumbnail" onclick="mostrarImagem('download(2).jpg')">
+    <div>
+        <img src="download.jpg" alt="Imagem Principal" id="imagemPrincipal">
+    </div>
+    </div>
+    <script>
+        function mostrarImagem(src) {
+            var imagemPrincipal = document.getElementById("imagemPrincipal");
+            if (imagemPrincipal) {
+                imagemPrincipal.src = src;
+            } else {
+                console.error("Elemento 'imagemPrincipal' não encontrado.");
+            }
+        }
+    </script>
+</body>
+</html>

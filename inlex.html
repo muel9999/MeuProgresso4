@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco de Notas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: aquamarine;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #e9ecef;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        li button {
+            background-color: #dc3545;
+            padding: 5px 10px;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        li button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bloco de Notas</h1>
+        <input type="text" id="noteInput" placeholder="Escreva sua nota aqui...">
+        <button onclick="criarItemLista()">Adicionar Nota</button>
+        <ul id="noteList">
+        </ul>
+    </div>
+    <script>
+        let lista = []
+
+        function criarItemLista() {
+            const input = document.getElementById("noteInput")
+            if (input.value != "") {
+                lista.push(input.value)
+                input.value = ""
+                mostrarLista()
+            }
+        }
+
+        function mostrarLista() {
+            let lista_ul = document.getElementById("noteList")
+            lista_ul.innerHTML = "";
+            for (let posicao = 0; posicao < lista.length; posicao = posicao + 1) {
+
+                let item_lista = document.createElement("li")
+                item_lista.textContent = lista[posicao]
+                
+                let botao_deletar = document.createElement("button")
+                botao_deletar.textContent = "Excluir"
+                botao_deletar.onclick = function deletar_item_lista(){
+                    deletar(posicao)
+
+                }
+                let botao_editar = document.criateElement("button")
+
+                item_lista.appendChild(botao_deletar)
+                lista_ul.appendChild(item_lista)
+            }
+        }
+
+        function deletar(posicao_item){
+            let lista_nova = []
+        
+            for(let posicao = 0; posicao < lista.length; posicao = posicao + 1){
+                if(posicao != posicao_item){
+                    lista_nova.push(lista[posicao])
+                }
+            }
+            lista = lista_nova
+            mostrarLista()
+
+        }
+
+    </script>
+</body>
+
+</html>
